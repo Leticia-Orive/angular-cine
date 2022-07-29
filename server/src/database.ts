@@ -3,10 +3,10 @@ import  keys from './keys';
 
 const pool = mysql.createPool(keys.database);
 
-pool.getConnection()
-    .then(Connection => {
-    pool.releaseConnection(Connection);
-    console.log('DB is connection');
-    });
+//pool.getConnection()
+    //.then(Connection => {
+    //pool.releaseConnection(Connection);
+    //console.log('DB is connection');
+    //});
 
 export default pool;

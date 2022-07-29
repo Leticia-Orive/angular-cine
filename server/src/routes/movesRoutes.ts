@@ -1,15 +1,22 @@
-import {Router } from 'express';
-import moviesController  from '../controllers/moviesController'
+import {Router} from 'express';
+import moviesController from '../controllers/moviesController';
 
-class MovesRoutes{
+
+class MoviesRoutes{
     public router: Router = Router();
+
     constructor(){
         this.config();
 
     }
-    config(): void {
-        this.router.get('/',  moviesController.index);
+    config(): void{
+        this.router.get('/',moviesController.list);
+        this.router.get('/:id',moviesController.getOne);
+        this.router.post('/',moviesController.create);
+        this.router.delete('/:id',moviesController.delete);
+        this.router.put('/:id',moviesController.update);// update
     }
 }
-const movesRoutes = new MovesRoutes();
-export default movesRoutes.router;
+
+const moviesRoutes = new MoviesRoutes();
+export default moviesRoutes.router;
