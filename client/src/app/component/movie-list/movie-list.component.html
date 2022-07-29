@@ -1,0 +1,20 @@
+<div class="col-md-4" *ngFor="let movie of movies">
+    <div class="card text-center">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            {{movie.title}}
+            <button class="btn-danger" (click)="deleteMovie(movie.id)">
+                <i class="far fa-trash-alt"></i>
+            </button>
+        </div>
+        <img src="{{movie.image}}" class="card-img-top">
+        <div class="card-body">
+            <p>{{movie.description}}</p>
+            <a [routerLink]="['/movies/edit', movie.id]" class="btn btn-info btn-block">
+                EDIT MOVIE
+            </a>
+
+        </div>
+    </div>
+    
+
+</div>
