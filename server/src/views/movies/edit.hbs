@@ -1,0 +1,42 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/movie/edit/{{movie.id}}" method="post">
+                        <div class="form-group">
+                            <input type="text" value="{{movie.id}}" class="form-control" name="id" placeholder="Id">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="{{movie.image}}" class="form-control" name="image" placeholder="Image">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="{{movie.title}}" class="form-control" name="title" placeholder="Title" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description" rows="2" class="form-control" placeholder="Description">{{movie.description}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="{{movie.director}}" class="form-control" name="director" placeholder="Director">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="{{movie.actor}}" class="form-control" name="actor" placeholder="Actor">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="{{movie.genre}}" class="form-control" name="genre" placeholder="Genre">
+                        </div>
+                        <div class="form-group">
+                            <input type="date" value="{{movie.created_at}}" class="form-control" name="created_at" placeholder="Created_at">
+                        </div>
+                        <div class="form-group">
+                        
+                            <button class="btn btn-success btn-block">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
