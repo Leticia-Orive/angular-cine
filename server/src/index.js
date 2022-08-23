@@ -1,10 +1,17 @@
 const express = require('express');
 const morgan = require('morgan');
 const { dirname } = require('path');
-const expressbs = require(express.handlebars);
+const expressbs = require(express-handlebars);
 const path = require('path');
+const flash = require('connect-flash');
+const session = require('express-session');
+const MYSQLStore = require('express-mysql-session');
+const passport = requiere('passport');
+
+const {database} = requiere('./keys.js')
 //initializations
 const app = express();
+requiere('./lib/passport.js');
 
 //setting
 app.set('port', process.env.PORT || 3000);
@@ -20,9 +27,19 @@ app.engine('.hbs', expressbs({
 app.set('view engine', 'hbs'),
 
 //middlewares
+app.use(session({
+    secret:'',
+    resave:false,
+    saveUninitialized:false,
+    store: new MYSQLStore(database)
+}));
+
+app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false})); //aceptar formularios
 app.use(express.json());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Global variable
 app.use( req, res, next), () =>{
@@ -32,7 +49,7 @@ app.use( req, res, next), () =>{
 // Routes
 app.use(require('./routes/index')),
 app.use(require('./routes/authentication')),
-app.use('/links',require('./routes/links'))
+app.use('/links',require('./routes/movies'))
 // Public
 app.use(express.static(path.join(dirname, 'public')))
 // starting the server
