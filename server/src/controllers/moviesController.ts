@@ -10,8 +10,8 @@ class MoviesController {
     public async getOne (req: Request, res: Response): Promise<any> {
         const {id} = req.params;
         const movies = (await pool).query ( 'SELECT * FROM movies WHERE id = ?', [id]);
-        if (movies.lenght > 0){
-            return res.json(movies[0]);
+        if (Object.keys(movies).length > 0){
+            return res.json(Object.keys(movies)[0]);
         }
         res.status(404).json({text: "The movies doesn´t exist"})
     } 

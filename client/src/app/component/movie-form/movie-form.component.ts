@@ -14,7 +14,7 @@ export class MoviesFormComponent implements OnInit {
   @HostBinding('class') clasees = 'row';
 
   movie: Movie = {
-    id: 0,
+    id: '',
     image: '',
     title: '',
     description: '',

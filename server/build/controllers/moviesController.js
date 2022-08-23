@@ -24,8 +24,8 @@ class MoviesController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const movies = (yield database_1.default).query('SELECT * FROM movies WHERE id = ?', [id]);
-            if (movies.lenght > 0) {
-                return res.json(movies[0]);
+            if (Object.keys(movies).length > 0) {
+                return res.json(Object.keys(movies)[0]);
             }
             res.status(404).json({ text: "The movies doesn´t exist" });
         });

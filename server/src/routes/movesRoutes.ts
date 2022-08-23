@@ -1,7 +1,6 @@
 import {Router} from 'express';
 import moviesController from '../controllers/moviesController';
 
-
 class MoviesRoutes{
     public router: Router = Router();
 
@@ -20,3 +19,5 @@ class MoviesRoutes{
 
 const moviesRoutes = new MoviesRoutes();
 export default moviesRoutes.router;
+
+
