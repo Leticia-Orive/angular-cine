@@ -32,6 +32,7 @@ router.get('/', async (req, res) =>{
 router.get('/delete/:id', async (req,res) => {
     const {id} = req.params;
     await pool.query('DELETE FROM movies WHERE ID = ?', {id});
+    req.flash('success', 'Movies removed successfully')
     res.redirect('../views/movies')
 });
 
@@ -55,6 +56,7 @@ router.post('/edit/:id', async (req,res) => {
         created_at
     }
     await pool.query('UPDATE movies set ? WHERE id = ?', [newMovie, id]);
+    req.flash('success', 'Movies update successfully')
     res.redirect('../views/movies')
 }); 
 module.exports = router;
