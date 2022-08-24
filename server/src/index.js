@@ -1,17 +1,17 @@
 const express = require('express');
 const morgan = require('morgan');
 const { dirname } = require('path');
-const expressbs = require(express-handlebars);
+const expressbs = require('express-handlebars');
 const path = require('path');
 const flash = require('connect-flash');
 const session = require('express-session');
 const MYSQLStore = require('express-mysql-session');
-const passport = requiere('passport');
+const passport = require('passport');
 
-const {database} = requiere('./keys.js')
+const {database} = require('./keys.js')
 //initializations
 const app = express();
-requiere('./lib/passport.js');
+require('./lib/passport.js');
 
 //setting
 app.set('port', process.env.PORT || 3000);
