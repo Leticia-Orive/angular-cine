@@ -20,6 +20,7 @@ router.post('/add', async (req, res) => {
         created_at
     };
      await pool.query('INSERT INTO videoclub set ?', [newMovies]);
+     req.flash('success', 'Movies saved successfully');
     res.redirect('../views/movies');
 });
 router.get('/', async (req, res) =>{

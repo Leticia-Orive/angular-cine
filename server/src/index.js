@@ -28,7 +28,7 @@ app.set('view engine', 'hbs'),
 
 //middlewares
 app.use(session({
-    secret:'',
+    secret:'videoclub',
     resave:false,
     saveUninitialized:false,
     store: new MYSQLStore(database)
@@ -43,6 +43,7 @@ app.use(passport.session());
 
 // Global variable
 app.use( req, res, next), () =>{
+    app.locals.success = req.flash('success')
     next();
 }
 
