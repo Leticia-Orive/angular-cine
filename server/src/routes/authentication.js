@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport')
+const passport = require('passport');
+const {isLoggedIn, isNotLoggedIn} = require ('../lib/auth')
 
-router.get('/signup', (req, res) => {
+router.get('/signup', isNotLoggedIn, (req, res) => {
     res.render('../views/auth/signup.hbs')
 });
 
@@ -14,7 +15,7 @@ router.get('/signup', (req, res) => {
     //})
     //res.send('received');
 //});
-router.post('signup', passport.authenticate('local.signup',{
+router.post('signup', isNotLoggedIn, passport.authenticate('local.signup',{
     successRedirect: '/profile',
     failureRedirect: '/signup',
     failureFlash: true
@@ -22,12 +23,12 @@ router.post('signup', passport.authenticate('local.signup',{
     
 }));
 
-router.get('/signin', (req, res) => {
+router.get('/signin', isNotLoggedIn, (req, res) => {
     res.render('../views/auth/signin.hbs')
 
 });
 
-router.post('/signin', (req, res, next) => {
+router.post('/signin', isNotLoggedIn, (req, res, next) => {
     passport.authenticate('local.singin',{
         successRedirect: '/profile',
         failureRedirect: '/signin',
@@ -35,8 +36,13 @@ router.post('/signin', (req, res, next) => {
     })(req,res,next);
 });
 
-router.get('/profile', (req, res) => {
-    res.send('this is Profile');
+router.get('/profile', isLoggedIn, (req, res) => {
+    res.render('profile');
 });
+
+router.get('/logout', isLoggedIn, (req, res) => {
+    req.logOut();
+    res.redirect('../views/auth/signin.hbs')
+})
 
 module.exports = router;
