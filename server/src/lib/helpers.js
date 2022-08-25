@@ -13,7 +13,7 @@ helpers.encryptPassword = async (password) => {
 // Metodo logear
 helpers.matchPassword = async (password, savedPassword) => {
     try{
-        await bcryptjs.compare(password, savedPassword);
+        return await bcryptjs.compare(password, savedPassword);
     }catch(e){
         console.log(e);
     }

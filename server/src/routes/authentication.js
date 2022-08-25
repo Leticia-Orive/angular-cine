@@ -20,7 +20,21 @@ router.post('signup', passport.authenticate('local.signup',{
     failureFlash: true
 
     
-}))
+}));
+
+router.get('/signin', (req, res) => {
+    res.render('../views/auth/signin.hbs')
+
+});
+
+router.post('/signin', (req, res, next) => {
+    passport.authenticate('local.singin',{
+        successRedirect: '/profile',
+        failureRedirect: '/signin',
+        failureFlash: true
+    })(req,res,next);
+});
+
 router.get('/profile', (req, res) => {
     res.send('this is Profile');
 });
